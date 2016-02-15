@@ -51,7 +51,6 @@ class Bar {
 *Setup:*
 ```swift
 var testDouble = TestDouble()                           // init collaborator()
-testDouble.description()
 var bar = Bar(testDouble: testDouble)                   // init sut(collaborator)
 bar.baz()
 ```
@@ -59,7 +58,6 @@ bar.baz()
 *Test:*
 ```swift
 testDouble.updateString("This is the mutated string")   // mutate the collaborator
-testDouble.description()
 bar.baz()                                               // call sut.someMethod()
 ```
 `>>>"Original Test Double"`
