@@ -14,10 +14,9 @@ A friend and I were discussing swift and testing. He wanted to implement his TDD
  
  In order to mutate the collaborator, it has to be a reference type.  However, it doesn't seem right to force the actual collaborator to be a class based on testing requirements, so I looked at options for using protocols and generics to create a type that could be either a class or a struct.  
  
- I'll go through this in several steps, first I'll create a struct test double and try to follow the sudocode.
+ I'll go through this in several steps, first I'll create a struct test double and show why that won't work as a value type.
 
-
-##### Create a simple test double that can mutate some state
+##### Create a test double that can mutate state
 ```swift
 struct TestDouble {
     private var testString = "Original Test Double"
@@ -62,10 +61,11 @@ bar.baz()                                               // call sut.someMethod()
 ```
 `>>>"Original Test Double"`
  
-Oops, we wanted the mutated string.  It looks like the struct isn't going to work.
+Oops, we wanted the mutated string. The struct isn't going to work, since the struct is a reference type and `updateString` is creating a new copy of the struct, but `bar` only has access to the original copy.
+
 Try creating a protocol with a default extension and making the SUT generic so it can work with either a struct or a class that conforms to the protocol.
 
-##### Try mocking the double with a protocol
+##### Model the double's behavior with a protocol
 ```swift
 protocol PDouble {
     init(testString: String)
@@ -151,7 +151,9 @@ Which is what we are looking for.  But does the struct work?
 barStruct.baz()
 ```
 `>>>"Struct double test string"`  
-Just like earlier, the struct is a value type that cannot be mutated once it's created.
-
+Just like earlier, the struct is a value type that cannot be mutated once it's created.  
+#### Summary
 `PDouble` is a protocol that captures the testDouble's behavior and can be implemented either as a class or a struct.
-We have an approach that allows the TDD practitioner to create a protocol and a reference type (class) test double.  But when he implements the mocked class, he can with very little boilerplate code, use either a value type (struct) or reference type.
+We have an approach that allows a TDD practitioner to create a protocol and a reference type (class) test double, without forcing the implementation of the class that the test double is representing to be a reference type.  The protocol supports both value and reference types.  The SUT class, `bar` has to accomodate this approach by conforming to the protocol in a generic way that allows the concrete collaborator to be either a class or a struct.
+
+Clone to execute the code in a playground.
