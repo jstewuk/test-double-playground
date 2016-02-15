@@ -1,6 +1,6 @@
 # Compare struct and class options for Swift test doubles
 
-A friend and I were discussing swift and testing. His goal was to implement his TDD methodology in Swift.  In particular he was interested in ways to create test doubles in swift. His goal was to be able to create test doubles, but he wasn't sure whether he had to use a class or if using a struct might be an option.
+A friend and I were discussing swift and testing. He wanted to implement his TDD methodology in Swift.  In particular he was interested in ways to create test doubles in swift. He wasn't sure whether he had to use a class or if using a struct might be an option.
 
  The intent is captured in this sudocode:
 
