@@ -65,7 +65,7 @@ bar.baz()                                               // call sut.someMethod()
 `>>>"Original Test Double"`
  
 Oops, we wanted the mutated string.  It looks like the struct isn't going to work.
-Perhaps creating a protocol with a default extension and making the SUT generic so it can work with either a struct or a class that conforms to the protocol.
+Try creating a protocol with a default extension and making the SUT generic so it can work with either a struct or a class that conforms to the protocol.
 
 ##### Try mocking the double with a protocol
 ```swift
@@ -147,10 +147,13 @@ stDouble.updateString("Mutated struct double string")
 
 barClass.baz()
 ```
-`>>>"Mutated class double string"` 
+`>>>"Mutated class double string"`  
+Which is what we are looking for.  But does the struct work?
 ```swift
 barStruct.baz()
 ```
-`>>>"Struct double test string"` 
+`>>>"Struct double test string"`  
+Just like earlier, the struct is a value type that cannot be mutated once it's created.
 
 `PDouble` is a protocol that captures the testDouble's behavior and can be implemented either as a class or a struct.
+We have an approach that allows the TDD practitioner to create a protocol and a reference type (class) test double.  But when he implements the mocked class, he can with very little boilerplate code, use either a value type (struct) or reference type.
