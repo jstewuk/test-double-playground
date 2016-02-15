@@ -133,8 +133,13 @@ let barClass = Bar2(testDouble: clDouble)
 let barStruct = Bar2(testDouble: stDouble)
 
 barClass.baz()
+```
+`>>>"Class double test string"`
+```swift
 barStruct.baz()
 ```
+`>>>"Struct double test string"`
+
 ##### Mutate the test double
 ```swift
 clDouble.updateString("Mutated class double string")
