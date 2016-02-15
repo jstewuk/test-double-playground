@@ -55,14 +55,14 @@ testDouble.description()
 var bar = Bar(testDouble: testDouble)                   // init sut(collaborator)
 bar.baz()
 ```
-`>>> Original Test Double`  
+`>>>"Original Test Double"`  
 *Test:*
 ```swift
 testDouble.updateString("This is the mutated string")   // mutate the collaborator
 testDouble.description()
 bar.baz()                                               // call sut.someMethod()
 ```
-`>>> Original Test Double`
+`>>>"Original Test Double"`
  
 Oops, we wanted the mutated string.  It looks like the struct isn't going to work.
 Perhaps creating a protocol with a default extension and making the SUT generic so it can work with either a struct or a class that conforms to the protocol.
@@ -146,6 +146,6 @@ barClass.baz()
 ```swift
 barStruct.baz()
 ```
-`>>>""Struct double test string""` 
+`>>>"Struct double test string"` 
 
 `PDouble` is a protocol that captures the testDouble's behavior and can be implemented either as a class or a struct.
