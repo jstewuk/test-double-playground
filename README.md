@@ -112,7 +112,7 @@ stDouble.description()
 ```
 `>>>"Struct double test string"`  
 ##### ( Update: Don't have to use generics. )
-##### SUT clas can use either the struct or the class
+##### SUT class can use either the struct or the class
 ```swift
 class Bar2 {
     var testDouble: PDouble
