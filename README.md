@@ -111,12 +111,13 @@ clDouble.description()
 stDouble.description() 
 ```
 `>>>"Struct double test string"`  
-##### Make the SUT class generic, so it can use either the struct or the class
+##### ( Update: Don't have to use generics. )
+##### SUT clas can use either the struct or the class
 ```swift
-class Bar2<DoubleType: PDouble > {
-    var testDouble: DoubleType
+class Bar2 {
+    var testDouble: PDouble
     
-    init(testDouble: DoubleType) {
+    init(testDouble: PDouble) {
         self.testDouble = testDouble
     }
     
